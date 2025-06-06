@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>動物學習樂園</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; background: #f0f8ff; }
+    button { margin: 10px; padding: 10px 20px; font-size: 20px; }
+    img, iframe { margin-top: 20px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <h1>🐟 動物學習樂園 🐯</h1>
+  <p>請點選想看的動物：</p>
+
+  <button onclick="showAnimal('fish')">魚</button>
+  <button onclick="showAnimal('lion')">獅子</button>
+  <button onclick="showAnimal('parrot')">鸚鵡</button>
+  <button onclick="showAnimal('dog')">狗狗</button>
+  <button onclick="showAnimal('cat')">貓貓</button>
+  <button onclick="showAnimal('duck')">鴨子</button>
+
+  <div id="content"></div>
+
+  <script>
+    const data = {
+      fish: {
+        img: "https://images.pexels.com/photos/128756/pexels-photo-128756.jpeg",
+        video: "https://www.youtube.com/embed/Ec4-6C0okW8",
+        desc: "這是魚，牠們住在水裡。"
+      },
+      lion: {
+        img: "https://images.pexels.com/photos/730536/pexels-photo-730536.jpeg",
+        video: "https://www.youtube.com/embed/Mm3jclrWClY",
+        desc: "這是獅子，是森林之王。"
+      },
+      parrot: {
+        img: "https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg",
+        video: "https://www.youtube.com/embed/Dd7CF5EZ6gY",
+        desc: "這是鸚鵡，會學人說話。"
+      },
+      dog: {
+        img: "https://images.pexels.com/photos/29907920/pexels-photo-29907920.jpeg",
+        video: "https://www.youtube.com/embed/9YzFo51z8Fo",
+        desc: "這是狗狗，牠們是人類的好朋友。"
+      },
+      cat: {
+        img: "https://images.pexels.com/photos/979503/pexels-photo-979503.jpeg",
+        video: "https://www.youtube.com/embed/tGckOE0JMlg",
+        desc: "這是貓貓，牠們喜歡獨自探索。"
+      },
+      duck: {
+        img: "https://images.pexels.com/photos/13992817/pexels-photo-13992817.jpeg",
+        video: "https://www.youtube.com/embed/-bOV5EKunpI",
+        desc: "這是鴨子，牠們喜歡在水裡游泳。"
+      }
+    };
+
+    function showAnimal(key) {
+      const animal = data[key];
+      document.getElementById("content").innerHTML = `
+        <h2>${animal.desc}</h2>
+        <img src="${animal.img}" width="300"><br>
+        <iframe width="300" height="200" src="${animal.video}" allowfullscreen></iframe>
+      `;
+      // 語音朗讀
+      const msg = new SpeechSynthesisUtterance(animal.desc);
+      speechSynthesis.speak(msg);
+    }
+  </script>
+</body>
+</html>
